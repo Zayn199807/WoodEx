@@ -5,47 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WoodEX - Home</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <h1>Wood Exchange PTE LTD</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="woodex-it.html">WoodEx IT</a></li>
-                <li><a href="woodex-land.html">WoodEx Land Development</a></li>
-                <li><a href="profiles.html">Profiles</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <!-- Page Title Above Navigation -->
+    <div class="page-title">Welcome to WoodEX</div>
 
-    <main>
+    <!-- Logo -->
+    <div class="logo-wrapper">
+        <img src="img/WoodExchange.png" alt="Wood Exchange Logo">
+    </div>
 
-        <section class="intro">
-            <div class="main-logo-container">
-                <div class="logo-wrapper main-logo-wrapper">
-                    <img src="img/WoodExchange.png" alt="Wood Exchange Logo" class="logo">
-                </div>
-            <h2>Welcome to Wood Exchange Fiji</h2>
-            <p>
-                Wood Exchange Fiji is a trusted platform connecting buyers and sellers of quality timber and wood products across Fiji. 
-                Through our active network and Facebook presence, we provide a professional space where contractors, builders, suppliers, 
-                and individuals can efficiently source and trade timber for residential and commercial projects.
-            </p>
-            <p>
-                Our mission is to strengthen Fiji’s timber and construction industry by promoting responsible forestry practices, 
-                reliable supply channels, and strong local partnerships. We are committed to supporting sustainable growth while 
-                ensuring customers have access to durable, climate-suitable materials.
-            </p>
-            <p>
-                At Wood Exchange Fiji, we stand for quality, transparency, and long-term value — helping build stronger structures 
-                and stronger business relationships throughout the country.
-            </p>
-        </section>
-    </main>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="woodex-it.html">WoodEx IT</a></li>
+            <li><a href="woodex-land.html">WoodEx Land Development</a></li>
+            <li><a href="profiles.html">Profiles</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <script src="js/script.js"></script>
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Connecting Timber Buyers & Sellers Across Fiji</h1>
+            <p>Reliable, sustainable, and professional timber exchange for residential and commercial projects.</p>
+            <a href="woodex-it.html" class="btn-primary">Explore Our Services</a>
+        </div>
+        <div class="hero-image">
+            <img src="img/hero-wood.jpg" alt="Wood Exchange">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>About WoodEX</h2>
+        <p>WoodEX Fiji bridges buyers and suppliers of high-quality timber, supporting responsible forestry practices and ensuring reliable supply channels. Our mission is to strengthen the timber and construction industry while delivering excellent value to our clients.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2>Our Divisions</h2>
+        <div class="service-cards">
+            <div class="service-card">
+                <img src="img/woodex-it-icon.png" alt="IT Services">
+                <h3>WoodEx IT</h3>
+                <p>Professional IT solutions, network setup, cybersecurity, and cloud support tailored for businesses.</p>
+                <a href="woodex-it.html" class="btn-secondary">Learn More</a>
+            </div>
+            <div class="service-card">
+                <img src="img/woodex-land-icon.png" alt="Land Development">
+                <h3>WoodEx Land</h3>
+                <p>Real estate planning, construction projects, and sustainable land development solutions across Fiji.</p>
+                <a href="woodex-land.html" class="btn-secondary">Learn More</a>
+            </div>
+            <div class="service-card">
+                <img src="img/profiles-icon.png" alt="Team Profiles">
+                <h3>Our Team</h3>
+                <p>Meet the experienced professionals behind WoodEX, ensuring every project succeeds with expertise.</p>
+                <a href="profiles.html" class="btn-secondary">Meet the Team</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>© 2026 WoodEX PTE LTD | Designed in Fiji</p>
+</footer>
+
+<!-- JS -->
+<script src="js/script.js"></script>
+<script>
+    // Optional: Auto-update header title based on page
+    document.addEventListener('DOMContentLoaded', () => {
+        const pageTitle = document.querySelector('.page-title');
+        const pageName = window.location.pathname.split('/').pop();
+        switch(pageName) {
+            case 'index.html':
+                pageTitle.textContent = 'Welcome to WoodEX';
+                break;
+            case 'woodex-it.html':
+                pageTitle.textContent = 'WoodEX IT Services';
+                break;
+            case 'woodex-land.html':
+                pageTitle.textContent = 'WoodEX Land Development';
+                break;
+            case 'profiles.html':
+                pageTitle.textContent = 'WoodEX Team';
+                break;
+            default:
+                pageTitle.textContent = 'WoodEX';
+        }
+    });
+</script>
 
 </body>
 </html>

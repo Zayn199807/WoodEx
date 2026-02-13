@@ -2,12 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // ======= 1. Highlight active navigation tab =======
     const navLinks = document.querySelectorAll('nav ul li a');
-    const currentPage = window.location.pathname.split('/').pop(); // Get current page filename
+    const currentPage = window.location.pathname.split('/').pop();
 
     navLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === currentPage) {
-            link.classList.add('active'); // Adds 'active' class defined in CSS
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
         }
     });
 
@@ -23,77 +22,76 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 200);
     }
 
-    // ======= 3. Smooth Scroll on Navigation =======
+    // ======= 3. Smooth Scroll =======
     const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
     smoothScrollLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = link.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 60, // Adjusting for header height
-                    behavior: 'smooth'
-                });
+            const target = document.getElementById(link.getAttribute('href').substring(1));
+            if (target) {
+                window.scrollTo({ top: target.offsetTop - 60, behavior: 'smooth' });
             }
         });
     });
 
-    // ======= 4. Profile Card Hover Animations =======
+    // ======= 4. Profiles Flip Cards =======
     const profileCards = document.querySelectorAll('.profile-card');
     profileCards.forEach(card => {
+        const inner = card.querySelector('.profile-card-inner');
+
+        // Desktop: hover flip handled via CSS
         card.addEventListener('mouseenter', () => {
-            card.style.transform = "scale(1.05)";
-            card.style.boxShadow = "0 12px 25px rgba(0, 0, 0, 0.25)";
+            inner.style.transform = "rotateY(180deg)";
         });
         card.addEventListener('mouseleave', () => {
-            card.style.transform = "scale(1)";
-            card.style.boxShadow = "0 8px 20px rgba(0, 0, 0, 0.15)";
+            inner.style.transform = "rotateY(0deg)";
+        });
+
+        // Mobile / click toggle
+        card.addEventListener('click', () => {
+            const isFlipped = inner.style.transform === "rotateY(180deg)";
+            inner.style.transform = isFlipped ? "rotateY(0deg)" : "rotateY(180deg)";
         });
     });
 
-    // ======= 5. Popup Modal (Mahogany Image Showcase) =======
-    const images = document.querySelectorAll('.intro img'); // Select all images in intro section
+    // ======= 5. Image Modal =======
+    const images = document.querySelectorAll('.intro img');
     const modal = document.createElement('div');
     const modalContent = document.createElement('div');
     const modalClose = document.createElement('span');
-    
+
     modal.classList.add('modal');
     modalContent.classList.add('modal-content');
     modalClose.classList.add('modal-close');
-    modalClose.innerHTML = '&times;'; // Close button
-
+    modalClose.innerHTML = '&times;';
     modal.appendChild(modalContent);
     modalContent.appendChild(modalClose);
     document.body.appendChild(modal);
 
-    images.forEach(image => {
-        image.addEventListener('click', () => {
-            modal.style.display = "block";
-            const modalImage = document.createElement('img');
-            modalImage.src = image.src;
-            modalContent.appendChild(modalImage);
+    images.forEach(img => {
+        img.addEventListener('click', () => {
+            modal.style.display = "flex";
+            const modalImg = document.createElement('img');
+            modalImg.src = img.src;
+            modalContent.appendChild(modalImg);
         });
     });
 
-    // Close the modal when clicking the close button
     modalClose.addEventListener('click', () => {
         modal.style.display = "none";
-        modalContent.innerHTML = ''; // Clear the image when closed
-        modalContent.appendChild(modalClose); // Keep the close button intact
+        modalContent.innerHTML = '';
+        modalContent.appendChild(modalClose);
     });
 
-    // Close the modal if clicked outside the modal content
     window.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.style.display = "none";
             modalContent.innerHTML = '';
-            modalContent.appendChild(modalClose); 
+            modalContent.appendChild(modalClose);
         }
     });
 
-    // ======= 6. Scroll Animations (Fade In on Scroll) =======
+    // ======= 6. Fade-in Scroll Animations =======
     const fadeElements = document.querySelectorAll('.fade-in');
     const checkVisibility = () => {
         fadeElements.forEach(el => {
@@ -103,9 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
-
-    // Trigger on page load and on scroll
-    checkVisibility();
-    window.addEventListener('scroll', checkVisibility);
+     checkVisibility();
+     window.addEventListener('scroll', checkVisibility);
 
 });

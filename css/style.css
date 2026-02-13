@@ -1,4 +1,4 @@
-/* Reset and basics */
+/* =================== RESET & GLOBAL STYLES =================== */
 * {
     margin: 0;
     padding: 0;
@@ -11,10 +11,10 @@ body {
     color: #333;
     line-height: 1.6;
     font-size: 16px;
-    scroll-padding-top: 180px; /* ensures headings are visible when scrolling to anchor links */
+    scroll-padding-top: 180px;
 }
 
-/* Header & Navigation */
+/* =================== HEADER & NAVIGATION =================== */
 header {
     background: #2b3e50;
     color: #fff;
@@ -24,10 +24,9 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 4px solid #ff9f1c; /* stylish accent line */
+    border-bottom: 4px solid #ff9f1c;
 }
 
-/* Logo and header text container */
 header .logo-container {
     display: flex;
     flex-direction: column;
@@ -36,7 +35,21 @@ header .logo-container {
     gap: 10px;
 }
 
-/* Logo wrapper for consistent sizing */
+/* ===== PAGE TITLE ABOVE NAV ===== */
+.page-title {
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    animation: headerColorPulse 3s infinite alternate;
+}
+
+header .page-title + .logo-wrapper {
+    margin-bottom: 10px; /* spacing between title and logo */
+}
+
 header .logo-wrapper {
     width: 180px;
     height: 120px;
@@ -46,10 +59,9 @@ header .logo-wrapper {
     overflow: hidden;
     border-radius: 15px;
     box-shadow: 0 6px 25px rgba(0,0,0,0.25);
-    background: #fff; /* optional light background behind logo */
+    background: #fff;
 }
 
-/* Logo image */
 header .logo-wrapper img {
     width: 100%;
     height: 100%;
@@ -63,10 +75,9 @@ header .logo-wrapper img:hover {
     box-shadow: 0 8px 30px rgba(255, 159, 28, 0.6);
 }
 
-/* Special styling for WoodEx Land logo */
-.land-logo-wrapper {
-    width: 180px; /* same width as default */
-    height: 100px; /* slightly shorter height */
+header .land-logo-wrapper {
+    width: 180px;
+    height: 100px;
     overflow: hidden;
     border-radius: 15px;
     box-shadow: 0 6px 25px rgba(0,0,0,0.25);
@@ -76,19 +87,18 @@ header .logo-wrapper img:hover {
     animation: borderPulse 3s infinite alternate;
 }
 
-.land-logo-wrapper img {
+header .land-logo-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.land-logo-wrapper img:hover {
+header .land-logo-wrapper img:hover {
     transform: scale(1.05) rotate(1deg);
     box-shadow: 0 8px 30px rgba(255, 159, 28, 0.6);
 }
 
-/* Animated gradient border */
 @keyframes borderPulse {
     0% {
         border-image-source: linear-gradient(45deg, #ff9f1c, #2b3e50, #ff9f1c);
@@ -104,7 +114,6 @@ header .logo-wrapper img:hover {
     }
 }
 
-/* Header h1 styling */
 header h1 {
     font-size: 2.7rem;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
@@ -112,13 +121,11 @@ header h1 {
     text-align: center;
 }
 
-/* Header hover effect */
 header .logo-container:hover h1 {
     color: #ff9f1c;
     transition: color 0.5s ease;
 }
 
-/* Navigation menu */
 nav ul {
     list-style: none;
     display: flex;
@@ -145,16 +152,15 @@ nav ul li a.active {
     transform: scale(1.05);
 }
 
-/* Main Content */
+/* =================== MAIN CONTENT =================== */
 main {
-    padding: 60px 20px 40px; /* top padding adjusted for sticky header */
-    margin-top: 20px; /* extra spacing below header */
+    padding: 60px 20px 40px;
+    margin-top: 20px;
     text-align: center;
     position: relative;
     z-index: 1;
 }
 
-/* Headings */
 main h2 {
     font-size: 2rem;
     margin-bottom: 20px;
@@ -175,7 +181,6 @@ main h2:hover {
     text-shadow: 0 0 20px rgba(255, 159, 28, 0.8);
 }
 
-/* Paragraph styling */
 main p, .intro p {
     max-width: 750px;
     margin: 20px auto;
@@ -197,7 +202,6 @@ main p:hover, .intro p:hover {
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
-/* Image Placeholders */
 .intro img {
     width: 100%;
     height: auto;
@@ -211,28 +215,95 @@ main p:hover, .intro p:hover {
     transform: scale(1.05);
 }
 
-/* Profile Cards */
+/* =================== SERVICE CARDS (IT & LAND) =================== */
+.service-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+    padding: 0 10px;
+}
+
+.service-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 25px 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.service-card h3 {
+    color: #2b3e50;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* =================== PROFILES FLIP CARDS =================== */
 .profiles-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
     margin-top: 30px;
     padding: 0 10px;
 }
 
 .profile-card {
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    cursor: pointer;
+    perspective: 1000px;
+    height: 380px;
+}
+
+.profile-card-inner {
     position: relative;
-    height: 300px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.profile-card:hover .profile-card-inner,
+.profile-card.flip .profile-card-inner {
+    transform: rotateY(180deg);
+}
+
+.profile-card-front,
+.profile-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 20px;
+}
+
+.profile-card-front {
+    background: #fff;
+    color: #2b3e50;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.profile-card-back {
+    background: #2b3e50;
+    color: #fff;
+    transform: rotateY(180deg);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
 .profile-card img {
@@ -246,48 +317,25 @@ main p:hover, .intro p:hover {
 
 .profile-card h3 {
     margin-bottom: 5px;
-    color: #2b3e50;
     z-index: 2;
 }
 
-.profile-card .biodata {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(43, 62, 80, 0.9);
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+.profile-card-front h3 {
+    color: #2b3e50;
 }
 
-.profile-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
-}
-
-.profile-card:hover img {
-    transform: scale(1.05);
-}
-
-.profile-card:hover .biodata {
-    opacity: 1;
+.profile-card-back h3 {
+    color: #ff9f1c;
 }
 
 .profile-card .biodata p {
     margin: 5px 0;
-    font-size: 0.9rem;
-    line-height: 1.3;
+    font-size: 1rem;
+    line-height: 1.4;
+    text-align: center;
 }
 
-/* Animations */
+/* =================== ANIMATIONS =================== */
 @keyframes fadeIn {
     0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
@@ -310,7 +358,7 @@ main p:hover, .intro p:hover {
     100% { border-image-source: linear-gradient(90deg, #ff9f1c, #2b3e50, #ff9f1c); }
 }
 
-/* Modal Styles */
+/* =================== MODALS =================== */
 .modal {
     display: none;
     position: fixed;
@@ -350,7 +398,7 @@ main p:hover, .intro p:hover {
     cursor: pointer;
 }
 
-/* Fade-in Scroll Animation */
+/* =================== SCROLL FADE-IN =================== */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -362,55 +410,29 @@ main p:hover, .intro p:hover {
     transform: translateY(0);
 }
 
-/* Add smooth scroll effect */
 html {
     scroll-behavior: smooth;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .profile-card {
-        height: 320px;
-    }
-
-    header h1 {
-        font-size: 2rem;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    main h2 {
-        font-size: 1.7rem;
-    }
-
-    .intro img {
-        max-width: 100%;
-    }
-
-    header .logo-wrapper {
-        width: 120px;
-        height: 90px;
-    }
-
-    header .logo-container {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    main {
-        padding-top: 50px;
-        margin-top: 0;
-    }
-}
-
-/* Footer */
+/* =================== FOOTER =================== */
 footer {
     text-align: center;
     padding: 20px 10px;
     margin-top: 40px;
     background: #2b3e50;
     color: #fff;
+}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width: 768px) {
+    .profile-card-inner { height: 300px; }
+    .profile-card { height: 340px; }
+
+    header h1 { font-size: 2rem; }
+    nav ul { flex-direction: column; gap: 10px; }
+    main h2 { font-size: 1.7rem; }
+    .intro img { max-width: 100%; }
+    header .logo-wrapper { width: 120px; height: 90px; }
+    header .logo-container { flex-direction: column; gap: 5px; }
+    main { padding-top: 50px; margin-top: 0; }
 }
