@@ -9,99 +9,127 @@
 </head>
 <body>
 
-<header>
-    <!-- Page Title Above Navigation -->
-    <div class="page-title">Welcome to WoodEX</div>
+<!-- ================= HEADER ================= -->
+<header class="main-header">
 
-    <!-- Logo -->
-    <div class="logo-wrapper">
-        <img src="img/WoodExchange.png" alt="Wood Exchange Logo">
+    <!-- Future Logo Area (left side) -->
+    <div class="logo">
+        <!-- Add logo later -->
+        <!-- <img src="img/logo.png" alt="WoodEX Logo"> -->
     </div>
 
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="woodex-it.html">WoodEx IT</a></li>
-            <li><a href="woodex-land.html">WoodEx Land Development</a></li>
-            <li><a href="profiles.html">Profiles</a></li>
-        </ul>
-    </nav>
+    <!-- Centered Page Title -->
+    <div class="page-title">Welcome to WoodEX</div>
+
 </header>
 
+<!-- NAVIGATION (NOW BELOW HEADER) -->
+<nav class="navbar">
+    <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="woodex-it.html">WoodEx IT</a></li>
+        <li><a href="woodex-land.html">WoodEx Land Development</a></li>
+        <li><a href="profiles.html">Profiles</a></li>
+    </ul>
+</nav>
+
+
+<!-- ================= MAIN CONTENT ================= -->
 <main>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Connecting Timber Buyers & Sellers Across Fiji</h1>
-            <p>Reliable, sustainable, and professional timber exchange for residential and commercial projects.</p>
-            <a href="woodex-it.html" class="btn-primary">Explore Our Services</a>
-        </div>
-        <div class="hero-image">
-            <img src="img/hero-wood.jpg" alt="Wood Exchange">
+            <p>
+                Reliable, sustainable, and professional timber exchange for
+                residential and commercial projects.
+            </p>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="about">
         <h2>About WoodEX</h2>
-        <p>WoodEX Fiji bridges buyers and suppliers of high-quality timber, supporting responsible forestry practices and ensuring reliable supply channels. Our mission is to strengthen the timber and construction industry while delivering excellent value to our clients.</p>
+        <p>
+            WoodEX Fiji bridges buyers and suppliers of high-quality timber,
+            supporting responsible forestry practices and ensuring reliable
+            supply channels. Our mission is to strengthen the timber and
+            construction industry while delivering excellent value to our clients.
+        </p>
     </section>
 
     <!-- Services Section -->
     <section class="services">
         <h2>Our Divisions</h2>
+
         <div class="service-cards">
+
             <div class="service-card">
                 <img src="img/woodex-it-icon.png" alt="IT Services">
                 <h3>WoodEx IT</h3>
-                <p>Professional IT solutions, network setup, cybersecurity, and cloud support tailored for businesses.</p>
+                <p>
+                    Professional IT solutions, network setup, cybersecurity,
+                    and cloud support tailored for businesses.
+                </p>
                 <a href="woodex-it.html" class="btn-secondary">Learn More</a>
             </div>
+
             <div class="service-card">
                 <img src="img/woodex-land-icon.png" alt="Land Development">
                 <h3>WoodEx Land</h3>
-                <p>Real estate planning, construction projects, and sustainable land development solutions across Fiji.</p>
+                <p>
+                    Real estate planning, construction projects, and sustainable
+                    land development solutions across Fiji.
+                </p>
                 <a href="woodex-land.html" class="btn-secondary">Learn More</a>
             </div>
+
             <div class="service-card">
                 <img src="img/profiles-icon.png" alt="Team Profiles">
                 <h3>Our Team</h3>
-                <p>Meet the experienced professionals behind WoodEX, ensuring every project succeeds with expertise.</p>
+                <p>
+                    Meet the experienced professionals behind WoodEX,
+                    ensuring every project succeeds with expertise.
+                </p>
                 <a href="profiles.html" class="btn-secondary">Meet the Team</a>
             </div>
+
         </div>
     </section>
+
 </main>
 
+<!-- ================= FOOTER ================= -->
 <footer>
     <p>© 2026 WoodEX PTE LTD | Designed in Fiji</p>
 </footer>
 
-<!-- JS -->
+<!-- ================= JS ================= -->
 <script src="js/script.js"></script>
+
 <script>
-    // Optional: Auto-update header title based on page
-    document.addEventListener('DOMContentLoaded', () => {
-        const pageTitle = document.querySelector('.page-title');
-        const pageName = window.location.pathname.split('/').pop();
-        switch(pageName) {
-            case 'index.html':
-                pageTitle.textContent = 'Welcome to WoodEX';
-                break;
-            case 'woodex-it.html':
-                pageTitle.textContent = 'WoodEX IT Services';
-                break;
-            case 'woodex-land.html':
-                pageTitle.textContent = 'WoodEX Land Development';
-                break;
-            case 'profiles.html':
-                pageTitle.textContent = 'WoodEX Team';
-                break;
-            default:
-                pageTitle.textContent = 'WoodEX';
-        }
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    const pageTitle = document.querySelector('.page-title');
+    const pageName = window.location.pathname.split('/').pop();
+
+    switch(pageName) {
+        case 'index.html':
+            pageTitle.textContent = 'Welcome to WoodEX';
+            break;
+        case 'woodex-it.html':
+            pageTitle.textContent = 'WoodEX IT Services';
+            break;
+        case 'woodex-land.html':
+            pageTitle.textContent = 'WoodEX Land Development';
+            break;
+        case 'profiles.html':
+            pageTitle.textContent = 'WoodEX Team';
+            break;
+        default:
+            pageTitle.textContent = 'WoodEX';
+    }
+});
 </script>
 
 </body>
