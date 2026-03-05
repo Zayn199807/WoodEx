@@ -6,41 +6,47 @@
     <title>WoodEX - IT Services</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- ADDED: ScrollReveal Library -->
+    <script src="https://unpkg.com/scrollreveal"></script>
 </head>
-<body>
+<body class="other">
 
-    <header class="main-header">
-
-        <!-- Future Logo Area (left side) -->
-        <div class="logo">
-            <!-- Add logo later -->
-            <!-- <img src="img/logo.png" alt="WoodEX Logo"> -->
+<!-- ================= HEADER ================= -->
+<!-- ADDED: class="main-header" for styling -->
+<header class="main-header">
+    <div class="logo-section">
+        <div class="logo-wrapper">
+            <!-- ADDED: id="main-logo" for scroll effects -->
+            <img src="logos/W.png" alt="WoodEX Logo" class="header-logo" id="main-logo">
         </div>
-    
-        <!-- Centered Page Title -->
-        <div class="page-title">WoodExIT Services</div>
-    
-    </header>
-    
-    <!-- NAVIGATION (NOW BELOW HEADER) -->
-    <nav class="navbar">
-        <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="woodex-it.html">WoodEx IT</a></li>
-            <li><a href="woodex-land.html">WoodEx Land Development</a></li>
-            <li><a href="profiles.html">Profiles</a></li>
-        </ul>
-    </nav>
+    </div> 
+    <div class="header-section">
+        <h1 class="page-title">WoodEx IT Services</h1>
+    </div>
+    <div>
+        <nav class="navbar" id="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="woodex-it.html" class="active">WoodEx IT</a></li>
+                <li><a href="woodex-land.html">WoodEx Land Development</a></li>
+                <li><a href="profiles.html">Profiles</a></li>
+            </ul>
+        </nav>
+    </div>
+    </div>
+</header>
+
+<!-- ================= MAIN CONTENT ================= -->
 <main>
     <section class="hero">
         <div class="hero-content">
             <h1>Professional IT Solutions for Your Business</h1>
             <p>Providing network setup, cybersecurity, and cloud solutions tailored to your company’s needs.</p>
         </div>
-
     </section>
 
-    <section class="services">
+    <!-- ADDED: reveal-section class for animation -->
+    <section class="services reveal-section">
         <h2>Our IT Offerings</h2>
         <div class="service-cards">
             <div class="service-card">
