@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
 </head>
 <body class="home">
 
@@ -38,7 +43,7 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Connecting Timber Buyers & Sellers Across Fiji</h1>
+            <h1>Fiji's Premier Timber Exchange</h1>
             <p>
                 Reliable, sustainable, and professional timber exchange for
                 residential and commercial projects.
@@ -47,35 +52,63 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about reveal-section">
-        <h2>About WoodEX</h2>
-        <p>
-            WoodEX Fiji bridges buyers and suppliers of high-quality timber,
-            supporting responsible forestry practices and ensuring reliable
-            supply channels. Our mission is to strengthen the timber and
-            construction industry while delivering excellent value to our clients.
-        </p>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
+  <!-- About Section -->
+<section class="about" id="about">
+    <div class="about-container">
+        <div class="about-image">
+            <!-- Replace 'img/about-img.jpg' with your actual image -->
+            <img src="img/about-img.jpg" alt="Timber Stacks">
+        </div>
+        <div class="about-text">
+            <h2>About WoodEX</h2>
+            <p>
+                WoodEX Fiji bridges buyers and suppliers of high-quality timber,
+                supporting responsible forestry practices and ensuring reliable
+                supply channels. Our mission is to strengthen the timber and
+                construction industry while delivering excellent value to our clients.
+            </p>
+            <a href="profiles.html" class="btn-secondary">Meet the Team</a>
+        </div>
+    </div>
+</section>
+       <!-- Services Section -->
+       <section class="services" id="services">
         <h2>Our Divisions</h2>
-        <div class="service-cards">
+        <div class="service-cards">          
+            <!-- WoodEx IT Card -->
             <div class="service-card">
-                <img src="img/woodex-it-icon.png" alt="IT Services">
+                <!-- Computer/IT Icon -->
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4c0 .667.083 1.167.25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75c.167-.333.25-.833.25-1.5H2s-2 0-2-2V4zm1.398-.855a.758.758 0 0 0-.254.302A1.46 1.46 0 0 0 1 4.01V10c0 .325.078.502.145.602.07.105.17.188.302.254a1.464 1.464 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.758.758 0 0 0 .254-.302 1.464 1.464 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.757.757 0 0 0-.302-.254A1.46 1.46 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145z"/>
+                    </svg>
+                </div>
                 <h3>WoodEx IT</h3>
                 <p>Professional IT solutions, network setup, cybersecurity, and cloud support tailored for businesses.</p>
                 <a href="woodex-it.html" class="btn-secondary">Learn More</a>
             </div>
+            <!-- WoodEx Land Card -->
             <div class="service-card">
-                <img src="img/woodex-land-icon.png" alt="Land Development">
+                <!-- Map/Land Development Icon -->
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                        <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                    </svg>
+                </div>
                 <h3>WoodEx Land</h3>
                 <p>Real estate planning, construction projects, and sustainable land development solutions across Fiji.</p>
                 <a href="woodex-land.html" class="btn-secondary">Learn More</a>
             </div>
+
+            <!-- Team Profiles Card -->
             <div class="service-card">
-                <img src="img/profiles-icon.png" alt="Team Profiles">
+                <!-- Silhouette People Icon -->
+                <div class="icon-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5.5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A5.505 5.505 0 0 1 5 12.5c0-1.416.765-2.832 1.936-3.22zM6 7a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM4 7a1 1 0 1 0-2 0 1 1 0 0 0 2 0z"/>
+                    </svg>
+                </div>
                 <h3>Our Team</h3>
                 <p>Meet the experienced professionals behind WoodEX, ensuring every project succeeds with expertise.</p>
                 <a href="profiles.html" class="btn-secondary">Meet the Team</a>

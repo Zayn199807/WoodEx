@@ -1,56 +1,158 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ======= 1. Highlight active navigation tab =======
+    // =================================================================
+    // 1. GSAP REGISTRATION & SETUP
+    // =================================================================
+    // Added ScrollToPlugin for smooth scrolling functionality
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+    // =================================================================
+    // 2. HERO TIMELINE (Making H1 Look Premium)
+    // =================================================================
+    // This sequence focuses on the Typography first for maximum impact
+    const masterTL = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+    masterTL
+        // 1. H1 slides up from below with a slight skew for style
+        .from(".hero-content h1", { 
+            y: 100, 
+            opacity: 0, 
+            duration: 1.2, 
+            skewY: 2 
+        })
+        // 2. Trigger the CSS underline animation
+        .call(() => {
+            const h1 = document.querySelector(".hero-content h1");
+            if(h1) h1.classList.add("animate-underline");
+        }, null, "-=0.2")
+        // 3. Paragraph fades in
+        .from(".hero-content p", { 
+            opacity: 0, 
+            y: 30, 
+            duration: 0.8 
+        }, "-=0.8")
+        // 4. Button pops in with a bounce
+        .from(".btn-hero", { 
+            scale: 0.8, 
+            opacity: 0, 
+            duration: 0.5, 
+            ease: "back.out(1.7)" 
+        }, "-=0.4")
+        // 5. Logo and Nav fade in last
+        .from(".header-logo", { 
+            opacity: 0, 
+            y: -30, 
+            duration: 0.8 
+        }, "-=1")
+        .from(".page-title", { 
+            opacity: 0, 
+            y: -30, 
+            duration: 0.6 
+        }, "-=0.6")
+        .from(".navbar a", { 
+            opacity: 0, 
+            y: -20, 
+            stagger: 0.1, 
+            duration: 0.5 
+        }, "-=0.4");
+
+    // =================================================================
+    // 3. SCROLL TRIGGER ANIMATIONS (Elements animate on scroll)
+    // =================================================================
+    
+    // Reveal generic sections (About, Services containers)
+    gsap.utils.toArray('.reveal-section').forEach(section => {
+        gsap.from(section, {
+            scrollTrigger: {
+                trigger: section,
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1
+        });
+    });
+
+    // Service Cards Stagger (Pop up one by one)
+    gsap.utils.toArray('.service-card').forEach((card, i) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+            },
+            opacity: 0,
+            y: 60,
+            duration: 0.8,
+            delay: i * 0.1 // Stagger effect
+        });
+    });
+
+    // Profile Cards Stagger (Scale in)
+    gsap.utils.toArray('.profile-card').forEach((card, i) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+            },
+            opacity: 0,
+            scale: 0.9,
+            duration: 0.6,
+            delay: i * 0.15
+        });
+    });
+
+    // =================================================================
+    // 4. CORE FUNCTIONALITY (Navigation, Modals, Etc)
+    // =================================================================
+
+    // --- Highlight Active Navigation Tab ---
     const navLinks = document.querySelectorAll('nav ul li a');
     const currentPage = window.location.pathname.split('/').pop();
 
     navLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === currentPage) {
+        if (link.getAttribute('href') === currentPage || (currentPage === '' && link.getAttribute('href') === 'index.html')) {
             link.classList.add('active');
         }
     });
 
-    // ======= 2. Homepage hero animation =======
-    const mainTitle = document.querySelector('main h2');
-    if (mainTitle) {
-        mainTitle.style.opacity = 0;
-        mainTitle.style.transform = "translateY(-20px)";
-        setTimeout(() => {
-            mainTitle.style.transition = "all 1s ease";
-            mainTitle.style.opacity = 1;
-            mainTitle.style.transform = "translateY(0)";
-        }, 200);
-    }
-
-    // ======= 3. Smooth scroll for anchor links =======
+    // --- Smooth Scroll for Anchor Links ---
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', e => {
             e.preventDefault();
             const target = document.querySelector(link.getAttribute('href'));
             if (target) {
-                window.scrollTo({ top: target.offsetTop - 60, behavior: 'smooth' });
+                // Use GSAP for ultra-smooth scroll
+                gsap.to(window, { 
+                    duration: 1, 
+                    scrollTo: { y: target, offsetY: 80 }, 
+                    ease: "power2.inOut" 
+                });
             }
         });
     });
 
-    // ======= 4. Profiles Flip Cards =======
+    // --- Profiles Flip Cards (Mobile Support) ---
     document.querySelectorAll('.profile-card').forEach(card => {
         const inner = card.querySelector('.profile-card-inner');
 
-        // Desktop hover handled via CSS
+        // Desktop hover handled via CSS, but we add listeners for robustness
         card.addEventListener('mouseenter', () => inner.style.transform = "rotateY(180deg)");
         card.addEventListener('mouseleave', () => inner.style.transform = "rotateY(0deg)");
 
         // Mobile click toggle
-        card.addEventListener('click', () => {
-            const isFlipped = inner.style.transform === "rotateY(180deg)";
-            inner.style.transform = isFlipped ? "rotateY(0deg)" : "rotateY(180deg)";
+        card.addEventListener('click', (e) => {
+            // Prevent mouseenter conflict on touch devices
+            if(window.innerWidth <= 768) {
+                const isFlipped = inner.style.transform === "rotateY(180deg)";
+                inner.style.transform = isFlipped ? "rotateY(0deg)" : "rotateY(180deg)";
+            }
         });
     });
 
-    // ======= 5. Image Modal =======
-    const images = document.querySelectorAll('.intro img');
+    // --- Image Modal ---
+    const images = document.querySelectorAll('.intro img, .gallery img');
     if (images.length > 0) {
         const modal = document.createElement('div');
         const modalContent = document.createElement('div');
@@ -60,8 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
         modalContent.classList.add('modal-content');
         modalClose.classList.add('modal-close');
         modalClose.innerHTML = '&times;';
-        modalContent.appendChild(modalClose);
+        
         modal.appendChild(modalContent);
+        modalContent.appendChild(modalClose);
         document.body.appendChild(modal);
 
         images.forEach(img => img.addEventListener('click', () => {
@@ -74,24 +177,12 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.style.display = "flex";
         }));
 
-        const closeModal = () => {
-            modal.style.display = "none";
-        };
-
+        const closeModal = () => modal.style.display = "none";
         modalClose.addEventListener('click', closeModal);
         window.addEventListener('click', e => { if (e.target === modal) closeModal(); });
     }
 
-    // ======= 6. Fade-in Scroll Animations =======
-    const fadeElements = document.querySelectorAll('.fade-in');
-    const checkVisibility = () => fadeElements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= window.innerHeight - 100) el.classList.add('visible');
-    });
-    checkVisibility();
-    window.addEventListener('scroll', checkVisibility);
-
-    // ======= NEW: 7. Glassmorphism Header on Scroll =======
+    // --- Glassmorphism Header on Scroll ---
     const header = document.querySelector('header');
     
     window.addEventListener('scroll', () => {
@@ -102,55 +193,49 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ======= NEW: 8. ScrollReveal Animations =======
-    // Check if ScrollReveal library is loaded
-    if (typeof ScrollReveal !== 'undefined') {
-        ScrollReveal().reveal('.service-card', {
-            delay: 200,
-            origin: 'bottom',
-            distance: '50px',
-            interval: 200, // Staggers the cards
-            reset: true // Animation repeats if you scroll up and down
-        });
-
-        ScrollReveal().reveal('.reveal-section', {
-            delay: 300,
-            origin: 'bottom',
-            distance: '40px',
-            duration: 1000
-        });
-
-        ScrollReveal().reveal('.profile-card', {
-            delay: 100,
-            origin: 'left',
-            distance: '30px',
-            interval: 150
-        });
-    }
-
-    // ======= 9. Mobile Navigation Toggle =======
+    // =================================================================
+    // 5. MOBILE NAVIGATION TOGGLE
+    // =================================================================
     const navbar = document.querySelector('.navbar ul');
     if (navbar) {
         const toggleBtn = document.createElement('button');
         toggleBtn.classList.add('nav-toggle');
         toggleBtn.innerHTML = '&#9776;';
-        toggleBtn.style.fontSize = '1.8rem';
-        toggleBtn.style.background = 'transparent';
-        toggleBtn.style.border = 'none';
-        toggleBtn.style.color = '#fff';
-        toggleBtn.style.cursor = 'pointer';
-        toggleBtn.style.marginLeft = '10px';
         
-        // Append to header section or wherever the button should be
-        // Ideally append this to a specific container, but keeping original logic:
-        // Note: In the original code, it appends to header directly. 
-        // With the new CSS layout, we might need to adjust where this button appears.
-        // For now, we keep it as is to avoid breaking logic.
+        // Premium Styling for Toggle
+        toggleBtn.style.cssText = `
+            display: none; 
+            font-size: 1.8rem; 
+            background: transparent; 
+            border: none; 
+            color: #D4AF37; 
+            cursor: pointer; 
+            position: absolute;
+            right: 20px;
+            top: 25px;
+            z-index: 1001;
+        `;
+        
         header.appendChild(toggleBtn); 
 
         toggleBtn.addEventListener('click', () => {
             navbar.classList.toggle('nav-open');
+            // Toggle icon between hamburger and X
+            if (navbar.classList.contains('nav-open')) {
+                toggleBtn.innerHTML = '&times;';
+            } else {
+                toggleBtn.innerHTML = '&#9776;';
+            }
         });
     }
+    
+    // Handle resize events
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            if(navbar) navbar.classList.remove('nav-open');
+            const toggleBtn = document.querySelector('.nav-toggle');
+            if(toggleBtn) toggleBtn.innerHTML = '&#9776;';
+        }
+    });
 
 });
