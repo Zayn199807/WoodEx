@@ -238,4 +238,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // ======= TYPING ANIMATION FOR IT PAGE =======
+const typingElement = document.querySelector('.typing-text');
+if (typingElement && document.body.classList.contains('woodex-it')) {
+    const text = typingElement.textContent;
+    typingElement.textContent = '';
+    let i = 0;
+    
+    // Prevent GSAP from hiding it if it was in a timeline
+    gsap.set(typingElement, { opacity: 1 }); 
+    
+    function typeWriter() {
+        if (i < text.length) {
+            typingElement.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50); // Speed of typing
+        }
+    }
+    // Start typing after a delay
+    setTimeout(typeWriter, 800);
+}
+
 });

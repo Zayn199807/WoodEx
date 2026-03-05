@@ -623,3 +623,168 @@ footer {
     fill: var(--accent-gold); /* Turns Gold on hover */
     transform: scale(1.1);    /* Slightly grows */
 }
+
+/* =================== PREMIUM FOOTER =================== */
+.premium-footer {
+    background-color: #020c1b;
+    padding: 60px 50px 20px;
+    color: var(--text-dim);
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+}
+
+.footer-col h4 {
+    color: var(--white);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+}
+
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col a {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-col a:hover {
+    color: var(--accent-gold);
+}
+
+.footer-logo {
+    height: 50px;
+    margin-bottom: 15px;
+    filter: brightness(0) invert(1); /* Makes logo white */
+    opacity: 0.8;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .premium-footer {
+        padding: 40px 20px 10px;
+    }
+    
+    .footer-grid {
+        text-align: center;
+    }
+}
+
+/* =================== WOODEX IT HERO BACKGROUND =================== */
+body.woodex-it .hero {
+    background-image: url('../img/server.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    z-index: 1;
+}
+
+/* The Dark Overlay - Essential for reading text */
+body.woodex-it .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Dark blue overlay, fading into the site color */
+    background: linear-gradient(
+        to bottom, 
+        rgba(10, 25, 47, 0.8) 0%, 
+        rgba(10, 25, 47, 0.6) 50%, 
+        #0a192f 100%
+    );
+    z-index: 0;
+}
+
+/* Ensure text sits on top */
+body.woodex-it .hero-content {
+    position: relative;
+    z-index: 2;
+}
+/* =================== WOODEX LAND HERO BACKGROUND =================== */
+body.woodex-land .hero {
+    background-image: url('../img/land.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    z-index: 1;
+}
+
+/* Dark Overlay - Ensures text is readable */
+body.woodex-land .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom, 
+        rgba(10, 25, 47, 0.8) 0%, 
+        rgba(10, 25, 47, 0.6) 50%, 
+        #0a192f 100%
+    );
+    z-index: 0;
+}
+
+/* Ensure text sits on top */
+body.woodex-land .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* =================== WOODEX LAND - FOREST THEME =================== */
+
+/* 1. OVERRIDE COLORS: Changes Gold to Forest Green */
+body.woodex-land {
+    --accent-gold: #2ECC71; /* Emerald Green */
+}
+
+/* 2. HEADINGS: Green Shimmer Animation (Replaces Gold) */
+body.woodex-land .hero-content h1,
+body.woodex-land main h2 {
+    /* Green Gradient Text */
+    background: linear-gradient(90deg, #ffffff 0%, #2ECC71 50%, #ffffff 100%);
+    background-size: 200% auto;
+    
+    /* Clip background to text */
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Run the animation */
+    animation: shimmer 5s infinite linear;
+    
+    /* Reset other properties */
+    text-shadow: none; /* Remove shadow as it doesn't work on clipped text */
+}
